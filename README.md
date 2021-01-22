@@ -1,2 +1,2 @@
-#JongJong's Dog Happy
+# JongJong's Dog Happy
 ![Happy](./GM/happy.jpg)
