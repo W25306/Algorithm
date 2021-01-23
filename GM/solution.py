@@ -64,8 +64,28 @@ def solution_02(num, k):
         result += maxValue
     return result
 
+from collections import deque
+def solution_03(people, limit):
+    """
+    Problem : 프로그래머스 구명보트
+    Category : Greedy, Time Complexity
+    Result : Pass
+    Description : List pop, remove : O(N) deque pop, popLeft : O(1)
+    """
+    people.sort(reverse=True)
+    people = deque(people)
+    result = 0
+    while people:
+        if len(people) < 2:
+            result += 1
+            break
+
+        big = people.popleft()
+        if big + people[-1] <= limit:
+            people.pop()
+
+        result += 1
+    return int(result)
 
 if __name__ == '__main__':
-    print(solution("1924",2))
-    print(solution("1231234",3))
-    print(solution("4177252841",4))
+    pass
