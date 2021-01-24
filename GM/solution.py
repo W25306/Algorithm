@@ -87,5 +87,24 @@ def solution_03(people, limit):
         result += 1
     return int(result)
 
+from collections import defaultdict
+def solution(clothes):
+    """
+    Problem : 프로그래머스 위장
+    Category : Math, Hash
+    Result : Pass
+    """
+    def getCombi(n, k):
+        return math.factorial(n) / (math.factorial(k)*math.factorial(n-k))
+    closet = defaultdict(list)
+    for item in clothes:
+        closet[item[1]].append(item[0])
+    result = 1
+    for item in closet.keys():
+        result *= getCombi(len(closet[item])+1,1)
+
+    return result - 1
+
 if __name__ == '__main__':
-    pass
+    test =  [["a","1"],["b","1"],["c","2"]]
+    print(solution(test))
