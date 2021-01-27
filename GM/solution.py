@@ -88,7 +88,7 @@ def solution_03(people, limit):
     return int(result)
 
 from collections import defaultdict
-def solution(clothes):
+def solution_04(clothes):
     """
     Problem : 프로그래머스 위장
     Category : Math, Hash
@@ -105,6 +105,30 @@ def solution(clothes):
 
     return result - 1
 
+
+def solution(skill, skill_trees):
+    answer = 0
+    for skill_tree in skill_trees:
+        arr = [skill_tree.find(char) for char in skill]
+        for idx, ele in enumerate(arr[1:]):
+            if ele == -1:
+                continue
+
+            # ele != -1
+            if arr[idx] == -1 or arr[idx] > ele:
+                break
+
+        else:
+            answer += 1
+
+    return answer
+
 if __name__ == '__main__':
-    test =  [["a","1"],["b","1"],["c","2"]]
-    print(solution(test))
+    test = "CBD"
+    skill_trees = ["BACDE","CBADF","AECBD","BDA"]
+    # print(solution('CBD', ['CAD']),0) #0
+    # print(solution('CBD',['AEF', 'ZJW']),2)#2
+    print(solution('REA',['REA', 'POA']),1)#1
+    print(solution('CBDK',['CB', 'CXYB', 'BD', 'AECD', 'ABC', 'AEX', 'CDB', 'CBKD', 'IJCB', 'LMDK']),4)
+    print(solution('BDC',['AAAABACA']),0)
+    print(solution('CBD',['C', 'D', 'CB', 'BDA']),2)
