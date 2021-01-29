@@ -106,7 +106,7 @@ def solution_04(clothes):
     return result - 1
 
 
-def solution(skill, skill_trees):
+def solution_05(skill, skill_trees):
     answer = 0
     for skill_tree in skill_trees:
         arr = [skill_tree.find(char) for char in skill]
@@ -123,12 +123,27 @@ def solution(skill, skill_trees):
 
     return answer
 
+def solution_06(n):
+    answer = [[0]*i for i in range(1,n+1)]
+    x = -1
+    y = 0
+    s = 1
+    for i in range(n):
+        for j in range(i,n):
+            if i % 3 == 0:
+                x += 1
+            elif i % 3 == 1:
+                y += 1
+            else:
+                x -= 1
+                y -= 1
+            answer[x][y] = s
+            s += 1
+    result = []
+    for ans in answer:
+        result += ans
+    return result
+
 if __name__ == '__main__':
     test = "CBD"
-    skill_trees = ["BACDE","CBADF","AECBD","BDA"]
-    # print(solution('CBD', ['CAD']),0) #0
-    # print(solution('CBD',['AEF', 'ZJW']),2)#2
-    print(solution('REA',['REA', 'POA']),1)#1
-    print(solution('CBDK',['CB', 'CXYB', 'BD', 'AECD', 'ABC', 'AEX', 'CDB', 'CBKD', 'IJCB', 'LMDK']),4)
-    print(solution('BDC',['AAAABACA']),0)
-    print(solution('CBD',['C', 'D', 'CB', 'BDA']),2)
+    print(solution(4))
