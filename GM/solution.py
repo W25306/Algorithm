@@ -1,6 +1,7 @@
 # coding=utf-8
 import math
 
+
 def solution_01(name):
     """
     Problem : 프로그래머스 조이스틱
@@ -21,20 +22,21 @@ def solution_01(name):
 
     right = changeList[-1]
     left = len(name) - changeList[0]
-    back = [right,left]
+    back = [right, left]
 
-    for i in range(len(changeList)-1):
+    for i in range(len(changeList) - 1):
         A = changeList[i]
-        B = changeList[i+1]
-        back.append(2*A+(len(name)-B))
-        back.append(A+2*(len(name)-B))
+        B = changeList[i + 1]
+        back.append(2 * A + (len(name) - B))
+        back.append(A + 2 * (len(name) - B))
 
     A = changeList[-1]
     B = changeList[0]
     back.append(2 * A + (len(name) - B))
-    back.append(A + 2*(len(name) - A))
+    back.append(A + 2 * (len(name) - A))
 
     return sum + min(back)
+
 
 def solution_02(num, k):
     """
@@ -45,17 +47,19 @@ def solution_02(num, k):
     """
     length = len(num)
     left = 0
-    right = k +1
+    right = k + 1
     result = ''
+
     def findMax(arr):
         maximum = '-1'
         idx = 0
-        for i,x in enumerate(arr):
+        for i, x in enumerate(arr):
             if x > maximum:
                 maximum = x
                 idx = i
-                if maximum == '9':break
-        return idx+left, str(maximum)
+                if maximum == '9': break
+        return idx + left, str(maximum)
+
     k = length - k
     for i in range(k):
         idx, maxValue = findMax(num[left:right])
@@ -64,7 +68,10 @@ def solution_02(num, k):
         result += maxValue
     return result
 
+
 from collections import deque
+
+
 def solution_03(people, limit):
     """
     Problem : 프로그래머스 구명보트
@@ -87,21 +94,26 @@ def solution_03(people, limit):
         result += 1
     return int(result)
 
+
 from collections import defaultdict
+
+
 def solution_04(clothes):
     """
     Problem : 프로그래머스 위장
     Category : Math, Hash
     Result : Pass
     """
+
     def getCombi(n, k):
-        return math.factorial(n) / (math.factorial(k)*math.factorial(n-k))
+        return math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
+
     closet = defaultdict(list)
     for item in clothes:
         closet[item[1]].append(item[0])
     result = 1
     for item in closet.keys():
-        result *= getCombi(len(closet[item])+1,1)
+        result *= getCombi(len(closet[item]) + 1, 1)
 
     return result - 1
 
@@ -123,13 +135,14 @@ def solution_05(skill, skill_trees):
 
     return answer
 
+
 def solution_06(n):
-    answer = [[0]*i for i in range(1,n+1)]
+    answer = [[0] * i for i in range(1, n + 1)]
     x = -1
     y = 0
     s = 1
     for i in range(n):
-        for j in range(i,n):
+        for j in range(i, n):
             if i % 3 == 0:
                 x += 1
             elif i % 3 == 1:
@@ -144,6 +157,23 @@ def solution_06(n):
         result += ans
     return result
 
+
+def solution(citations):
+    """
+    Problem : 프로그래머스 H-Index
+    Category : Sort
+    Time : n^2
+    """
+    for x in range(len(citations),-1,-1):
+        cnt = 0
+        for item in citations:
+            if item >= x:
+                cnt+=1
+        if cnt >= x >= len(citations)-cnt:
+            return x
+    return 0
+
+
 if __name__ == '__main__':
-    test = "CBD"
-    print(solution(4))
+    test = [3, 0, 6, 1, 5]
+    print(solution(test))
