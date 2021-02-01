@@ -158,7 +158,7 @@ def solution_06(n):
     return result
 
 
-def solution(citations):
+def solution_07(citations):
     """
     Problem : 프로그래머스 H-Index
     Category : Sort
@@ -173,7 +173,40 @@ def solution(citations):
             return x
     return 0
 
+def solution_08(arr):
+    """
+    Problem : 프로그래머스 쿼드압축 후 개수 세기
+    Algorithm : Recursion
+    """
+    ones = 0
+    for a in arr:
+        ones += sum(a)
+    zeros = len(arr) ** 2 - ones
+    def find(array, x1, x2,y1,  y2):
+        if x2 - x1 == 1:
+            return 0,0
+        one = 0
+        zero = 0
+        sumOfValue = 0
+        for item in array[y1:y2]:
+            sumOfValue += sum(item[x1:x2])
+        if sumOfValue == (x2-x1)**2:
+            one += (x2-x1)**2 - 1
+            return zero, one
+        elif sumOfValue == 0:
+            zero += (x2-x1)**2 - 1
+            return zero, one
+        temp1 = find(array, x1, (x1 + x2) // 2, y1, (y1 + y2) // 2)
+        temp2 = find(array, x1, (x1 + x2) // 2, (y1 + y2) // 2, y2)
+        temp3 = find(array, (x1 + x2) // 2, x2, y1, (y1 + y2) // 2)
+        temp4 = find(array, (x1 + x2) // 2, x2, (y1 + y2) // 2, y2)
+        zero += temp1[0] + temp2[0] + temp3[0] + temp4[0]
+        one += temp1[1] + temp2[1] + temp3[1] + temp4[1]
+        return zero, one
+
+    zero, one = find(arr,0,len(arr),0,len(arr))
+    return [zeros-zero,ones-one]
 
 if __name__ == '__main__':
-    test = [3, 0, 6, 1, 5]
-    print(solution(test))
+    test = [[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,0,0,1,1,1,1],[0,1,0,0,1,1,1,1],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,1],[0,0,0,0,1,0,0,1],[0,0,0,0,1,1,1,1]]
+    print(solution([[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]]))
