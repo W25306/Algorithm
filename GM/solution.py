@@ -207,6 +207,55 @@ def solution_08(arr):
     zero, one = find(arr,0,len(arr),0,len(arr))
     return [zeros-zero,ones-one]
 
+def solution_09(board):
+    def find(bo,i,j):
+        length = 1
+        range = 0
+        for cnt in range(1,len(bo)-max(i,j)):
+            checkRow = True
+            for row in range(cnt):
+                if not bo[i+cnt][j+row]:
+                    checkRow = False
+            checkMid = bo[i+cnt][j+cnt]
+            checkCol = True
+            for col in range(cnt):
+                if not bo[i+col][j+cnt]:
+                    checkCol = False
+            if checkRow and checkCol and checkMid:
+                length = cnt + 1
+            else:
+                break
+        return length
+    maxLength = 0
+    for i, colum in enumerate(board):
+        for j, row in enumerate(colum):
+            if row:
+                temp = find(board,i,j)
+                if maxLength < temp:
+                    maxLength = temp
+    return maxLength ** 2
+
+
+def solution_10(s):
+    """
+    Problem : 올바른 괄호
+    Algorithm : Stack
+    """
+    stack = [s[0]]
+    for item in s[1:]:
+        if not stack:
+            stack.append(item)
+            continue
+        top = stack[-1]
+        if top == item:
+            stack.append(item)
+        else:
+            if top != ')':
+                stack.pop(-1)
+
+    return not stack
 if __name__ == '__main__':
     test = [[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,0,0,1,1,1,1],[0,1,0,0,1,1,1,1],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,1],[0,0,0,0,1,0,0,1],[0,0,0,0,1,1,1,1]]
-    print(solution([[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]]))
+    test2 = [[0,1,1,1],[1,1,1,1],[1,1,1,1],[0,0,1,0]]
+    test3 = [[0, 0, 1, 1], [1, 1, 1, 1]]
+    print(solution("()()"))
