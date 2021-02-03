@@ -272,6 +272,27 @@ def solution_11(n):
         if cntN == cntB:
             return i
     return 1000000
+
+def solution_12(n):
+    """
+    Problem : 숫자의 표현
+    Algorithm : Implementation
+    """
+    answer = 0
+    if n % 2:
+        r = n // 2 + 1
+    else:
+        r = n//2
+    for i in range(1,r):
+        j = i + 1
+        sumValue = i
+        while sumValue < n:
+            sumValue = sum(range(i,j))
+            if sumValue == n:
+                answer += 1
+            else:
+                j+=1
+    return answer + 1
 if __name__ == '__main__':
     test = [[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,0,0,1,1,1,1],[0,1,0,0,1,1,1,1],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,1],[0,0,0,0,1,0,0,1],[0,0,0,0,1,1,1,1]]
     test2 = [[0,1,1,1],[1,1,1,1],[1,1,1,1],[0,0,1,0]]
