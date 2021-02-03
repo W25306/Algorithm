@@ -254,8 +254,26 @@ def solution_10(s):
                 stack.pop(-1)
 
     return not stack
+
+def solution_11(n):
+    """
+    Problem : 다음 큰 숫자
+    Algorithm : Implementation
+    """
+    def check(n):
+        A = 0
+        for i in bin(n)[2:]:
+            if i =='1':
+                A += 1
+        return A
+    cntN = check(n)
+    for i in range(n+1,1000000):
+        cntB = check(i)
+        if cntN == cntB:
+            return i
+    return 1000000
 if __name__ == '__main__':
     test = [[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,0,0,1,1,1,1],[0,1,0,0,1,1,1,1],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,1],[0,0,0,0,1,0,0,1],[0,0,0,0,1,1,1,1]]
     test2 = [[0,1,1,1],[1,1,1,1],[1,1,1,1],[0,0,1,0]]
     test3 = [[0, 0, 1, 1], [1, 1, 1, 1]]
-    print(solution("()()"))
+    print(solution(15))
