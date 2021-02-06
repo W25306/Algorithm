@@ -294,12 +294,27 @@ def solution_12(n):
                 j+=1
     return answer + 1
 
-def solution(land):
+def solution_13(land):
+    """
+    Problem : 땅따먹기
+    Algorithm : DP
+    """
     for i in range(1,len(land)):
         for y in range(4):
             land[i][y] += max(land[i-1][:y]+land[i-1][y+1:])
     return max(land[-1])
 
+def solution_14(A,B):
+    """
+    Problem : 최솟값 만들
+    """
+    answer = 0
+    A.sort()
+    B.sort(reverse=True)
+    for a,b in zip(A,B):
+            answer += a*b
+    return answer
+
 if __name__ == '__main__':
     test = [[1,2,3,5],[5,6,8,7],[4,3,2,1]]
-    print(solution([[4, 3, 2, 1], [2, 2, 2, 1], [6, 6, 6, 4], [8, 7, 6, 5]]))
+    print(solution([1,4,2], [5,4,4]))
