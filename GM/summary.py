@@ -31,6 +31,11 @@ def mul(A, B):
 def sumMatrix(A, B):
     return [[c + d for c, d in zip(a, b)] for a, b in zip(A, B)]
 
+"""
+행렬 곱셈
+"""
+def mulMatrix(A, B):
+    return [[sum(a*b for a, b in zip(A_row,B_col)) for B_col in zip(*B)] for A_row in A]
 
 """
 에라토스테네스의 체
