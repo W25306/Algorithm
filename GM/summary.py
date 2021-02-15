@@ -130,6 +130,12 @@ def gcd(a, b):
     return a
 
 """
+최대공배수
+"""
+def lcm(a, b):
+    return a * b // gcd(a,b)
+
+"""
 숫자의 자리수 합
 """
 def sum_digit(x):
