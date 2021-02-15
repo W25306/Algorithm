@@ -315,6 +315,18 @@ def solution_14(A,B):
             answer += a*b
     return answer
 
+def solution(arr):
+    """
+    Problem : N개의 최소공배수
+    """
+    from math import gcd
+    def lcm(x,y):
+        return x * y // gcd(x,y)
+    stone = arr[0]
+    for i in range(1,len(arr)):
+        stone = lcm(stone, arr[i])
+    return stone
+
 if __name__ == '__main__':
-    test = [[1,2,3,5],[5,6,8,7],[4,3,2,1]]
-    print(solution([1,4,2], [5,4,4]))
+    test = "01110"
+    print(solution(test))
