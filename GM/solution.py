@@ -315,7 +315,7 @@ def solution_14(A,B):
             answer += a*b
     return answer
 
-def solution(arr):
+def solution_15(arr):
     """
     Problem : N개의 최소공배수
     """
@@ -327,6 +327,27 @@ def solution(arr):
         stone = lcm(stone, arr[i])
     return stone
 
+def solution_16(nums):
+    """
+    Problem : 프로그래머스 소수 만들기
+    Algorithm : Combination, Prime Number
+    """
+    from itertools import combinations
+    answer = 0
+
+    def isPrime(a):
+        if (a < 2):
+            return False
+        for i in range(2, a):
+            if (a % i == 0):
+                return False
+        return True
+    combi = combinations(nums,3)
+    for item in combi:
+        if isPrime(sum(item)):
+            answer += 1
+    return answer
+
 if __name__ == '__main__':
-    test = "01110"
+    test = [1,2,7,6,4]
     print(solution(test))
