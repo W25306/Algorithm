@@ -348,6 +348,19 @@ def solution_16(nums):
             answer += 1
     return answer
 
+def solution_17(n):
+    """
+    Problem : 프로그래머스 점프와 순간 이동
+    """
+    ans = 0
+    while n > 1:
+        if n % 2 == 0:
+            n //= 2
+        else:
+            n -= 1
+            ans += 1
+    return ans + 1
+
 if __name__ == '__main__':
-    test = [1,2,7,6,4]
+    test = 6
     print(solution(test))
