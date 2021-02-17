@@ -361,6 +361,28 @@ def solution_17(n):
             ans += 1
     return ans + 1
 
+def solution_18(s):
+    """
+    Problem : 프로그래머스 튜플
+    """
+    answer = []
+    s = s[2:-2]
+    sp = s.split("},{")
+    for item in sp:
+        temp = item.split(",")
+        answer.append(list(map(int,temp)))
+    answer.sort(key=lambda x:len(x))
+    result = []
+    for item in answer:
+        for x in item:
+            if x not in result:
+                result.append(x)
+    return result
+
 if __name__ == '__main__':
-    test = 6
+    test = "{{2},{2,1,3},{2,1},{2,1,3,4}}"
+    print(solution("{{1,2,3},{2,1},{1,2,4,3},{2}}"))
     print(solution(test))
+    print(solution("{{20,111},{111}}"))
+    print(solution("{{123}}"))
+    print(solution("{{4,2,3},{3},{2,3,4,1},{2,3}}"))
