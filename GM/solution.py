@@ -379,10 +379,22 @@ def solution_18(s):
                 result.append(x)
     return result
 
+def solution_19(s):
+    """
+    Problem : 짝지어 제거하기
+    Algorithm : Stack
+    """
+    stack = []
+    for item in s:
+        if len(stack) == 0:
+            stack.append(item)
+            continue
+        top = stack[-1]
+        if top == item:
+            stack.pop()
+        else:
+            stack.append(item)
+    return int(len(stack) == 0)
 if __name__ == '__main__':
-    test = "{{2},{2,1,3},{2,1},{2,1,3,4}}"
-    print(solution("{{1,2,3},{2,1},{1,2,4,3},{2}}"))
+    test = "baabaca"
     print(solution(test))
-    print(solution("{{20,111},{111}}"))
-    print(solution("{{123}}"))
-    print(solution("{{4,2,3},{3},{2,3,4,1},{2,3}}"))
