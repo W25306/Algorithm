@@ -395,6 +395,27 @@ def solution_19(s):
         else:
             stack.append(item)
     return int(len(stack) == 0)
+
+def solution(n, t, m, p):
+    """
+    Problem : 프로그래머스 n진수 게임
+    Algorithm : Implementation
+    """
+    NOTATION = '0123456789ABCDEF'
+
+    def change(N, K):
+        q, r = divmod(N, K)
+        n = NOTATION[r]
+        return change(q, K) + n if q else n
+    result = ""
+    i = 0
+    while True:
+        result += change(i,n)
+        if len(result) > t*m+(p-1):
+            break
+        i += 1
+    answer = result[p-1:len(result):m]
+    return answer[:t]
 if __name__ == '__main__':
     test = "baabaca"
-    print(solution(test))
+    print(solution(16,16,2,2))
