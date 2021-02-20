@@ -164,14 +164,15 @@ def solution_07(citations):
     Category : Sort
     Time : n^2
     """
-    for x in range(len(citations),-1,-1):
+    for x in range(len(citations), -1, -1):
         cnt = 0
         for item in citations:
             if item >= x:
-                cnt+=1
-        if cnt >= x >= len(citations)-cnt:
+                cnt += 1
+        if cnt >= x >= len(citations) - cnt:
             return x
     return 0
+
 
 def solution_08(arr):
     """
@@ -182,19 +183,20 @@ def solution_08(arr):
     for a in arr:
         ones += sum(a)
     zeros = len(arr) ** 2 - ones
-    def find(array, x1, x2,y1,  y2):
+
+    def find(array, x1, x2, y1, y2):
         if x2 - x1 == 1:
-            return 0,0
+            return 0, 0
         one = 0
         zero = 0
         sumOfValue = 0
         for item in array[y1:y2]:
             sumOfValue += sum(item[x1:x2])
-        if sumOfValue == (x2-x1)**2:
-            one += (x2-x1)**2 - 1
+        if sumOfValue == (x2 - x1) ** 2:
+            one += (x2 - x1) ** 2 - 1
             return zero, one
         elif sumOfValue == 0:
-            zero += (x2-x1)**2 - 1
+            zero += (x2 - x1) ** 2 - 1
             return zero, one
         temp1 = find(array, x1, (x1 + x2) // 2, y1, (y1 + y2) // 2)
         temp2 = find(array, x1, (x1 + x2) // 2, (y1 + y2) // 2, y2)
@@ -204,33 +206,35 @@ def solution_08(arr):
         one += temp1[1] + temp2[1] + temp3[1] + temp4[1]
         return zero, one
 
-    zero, one = find(arr,0,len(arr),0,len(arr))
-    return [zeros-zero,ones-one]
+    zero, one = find(arr, 0, len(arr), 0, len(arr))
+    return [zeros - zero, ones - one]
+
 
 def solution_09(board):
-    def find(bo,i,j):
+    def find(bo, i, j):
         length = 1
         range = 0
-        for cnt in range(1,len(bo)-max(i,j)):
+        for cnt in range(1, len(bo) - max(i, j)):
             checkRow = True
             for row in range(cnt):
-                if not bo[i+cnt][j+row]:
+                if not bo[i + cnt][j + row]:
                     checkRow = False
-            checkMid = bo[i+cnt][j+cnt]
+            checkMid = bo[i + cnt][j + cnt]
             checkCol = True
             for col in range(cnt):
-                if not bo[i+col][j+cnt]:
+                if not bo[i + col][j + cnt]:
                     checkCol = False
             if checkRow and checkCol and checkMid:
                 length = cnt + 1
             else:
                 break
         return length
+
     maxLength = 0
     for i, colum in enumerate(board):
         for j, row in enumerate(colum):
             if row:
-                temp = find(board,i,j)
+                temp = find(board, i, j)
                 if maxLength < temp:
                     maxLength = temp
     return maxLength ** 2
@@ -255,23 +259,27 @@ def solution_10(s):
 
     return not stack
 
+
 def solution_11(n):
     """
     Problem : 다음 큰 숫자
     Algorithm : Implementation
     """
+
     def check(n):
         A = 0
         for i in bin(n)[2:]:
-            if i =='1':
+            if i == '1':
                 A += 1
         return A
+
     cntN = check(n)
-    for i in range(n+1,1000000):
+    for i in range(n + 1, 1000000):
         cntB = check(i)
         if cntN == cntB:
             return i
     return 1000000
+
 
 def solution_12(n):
     """
@@ -282,50 +290,55 @@ def solution_12(n):
     if n % 2:
         r = n // 2 + 1
     else:
-        r = n//2
-    for i in range(1,r):
+        r = n // 2
+    for i in range(1, r):
         j = i + 1
         sumValue = i
         while sumValue < n:
-            sumValue = sum(range(i,j))
+            sumValue = sum(range(i, j))
             if sumValue == n:
                 answer += 1
             else:
-                j+=1
+                j += 1
     return answer + 1
+
 
 def solution_13(land):
     """
     Problem : 땅따먹기
     Algorithm : DP
     """
-    for i in range(1,len(land)):
+    for i in range(1, len(land)):
         for y in range(4):
-            land[i][y] += max(land[i-1][:y]+land[i-1][y+1:])
+            land[i][y] += max(land[i - 1][:y] + land[i - 1][y + 1:])
     return max(land[-1])
 
-def solution_14(A,B):
+
+def solution_14(A, B):
     """
     Problem : 최솟값 만들
     """
     answer = 0
     A.sort()
     B.sort(reverse=True)
-    for a,b in zip(A,B):
-            answer += a*b
+    for a, b in zip(A, B):
+        answer += a * b
     return answer
+
 
 def solution_15(arr):
     """
     Problem : N개의 최소공배수
     """
     from math import gcd
-    def lcm(x,y):
-        return x * y // gcd(x,y)
+    def lcm(x, y):
+        return x * y // gcd(x, y)
+
     stone = arr[0]
-    for i in range(1,len(arr)):
+    for i in range(1, len(arr)):
         stone = lcm(stone, arr[i])
     return stone
+
 
 def solution_16(nums):
     """
@@ -342,11 +355,13 @@ def solution_16(nums):
             if (a % i == 0):
                 return False
         return True
-    combi = combinations(nums,3)
+
+    combi = combinations(nums, 3)
     for item in combi:
         if isPrime(sum(item)):
             answer += 1
     return answer
+
 
 def solution_17(n):
     """
@@ -361,6 +376,7 @@ def solution_17(n):
             ans += 1
     return ans + 1
 
+
 def solution_18(s):
     """
     Problem : 프로그래머스 튜플
@@ -370,14 +386,15 @@ def solution_18(s):
     sp = s.split("},{")
     for item in sp:
         temp = item.split(",")
-        answer.append(list(map(int,temp)))
-    answer.sort(key=lambda x:len(x))
+        answer.append(list(map(int, temp)))
+    answer.sort(key=lambda x: len(x))
     result = []
     for item in answer:
         for x in item:
             if x not in result:
                 result.append(x)
     return result
+
 
 def solution_19(s):
     """
@@ -396,7 +413,8 @@ def solution_19(s):
             stack.append(item)
     return int(len(stack) == 0)
 
-def solution(n, t, m, p):
+
+def solution_20(n, t, m, p):
     """
     Problem : 프로그래머스 n진수 게임
     Algorithm : Implementation
@@ -407,15 +425,39 @@ def solution(n, t, m, p):
         q, r = divmod(N, K)
         n = NOTATION[r]
         return change(q, K) + n if q else n
+
     result = ""
     i = 0
     while True:
-        result += change(i,n)
-        if len(result) > t*m+(p-1):
+        result += change(i, n)
+        if len(result) > t * m + (p - 1):
             break
         i += 1
-    answer = result[p-1:len(result):m]
+    answer = result[p - 1:len(result):m]
     return answer[:t]
+
+
+def solution_21(n, a, b):
+    """
+    Problem : 프로그래머스 예상 대진표
+    Algorithm : Binary Search
+    """
+    def sol(s, e, a, b):
+        if a <= (s + e) / 2 and b <= (s + e) / 2:  # Same Side
+            if abs(a - b) == 1:
+                return 1
+            answer = sol(s, (s + e) // 2, a, b)
+        elif a > (s + e) / 2 and b > (s + e) / 2:  # Same Side
+            if abs(a - b) == 1:
+                return 1
+            answer = sol((s + e) // 2, e, a, b)
+        else:  # Diff Side
+            answer = math.log(e - s, 2)
+        return answer
+
+    return int(sol(0, n, a, b))
+
+
 if __name__ == '__main__':
     test = "baabaca"
-    print(solution(16,16,2,2))
+    print(solution(16, 16, 13))
