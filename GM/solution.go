@@ -3,11 +3,36 @@ package main
 import "fmt"
 
 func main() {
-	var test = []int{1, 3, 2, 4, 2}
-	fmt.Println(solution(test))
+	fmt.Println(1)
 }
-
-func solution(answers []int) []int {
+func _(a int, b int) string {
+	// 프로그래머스 2016년
+	month := [12]int{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+	day := 4 + b
+	for _, days := range month[0 : a-1] {
+		day += days
+	}
+	switch day % 7 {
+	case 0:
+		return "SUN"
+	case 1:
+		return "MON"
+	case 2:
+		return "TUE"
+	case 3:
+		return "WED"
+	case 4:
+		return "THU"
+	case 5:
+		return "FRI"
+	case 6:
+		return "SAT"
+	default:
+		return "UNKNOWN"
+	}
+}
+func _(answers []int) []int {
+	// 프로그래머스 모의고
 	var first = [5]int{1, 2, 3, 4, 5}
 	var second = [8]int{2, 1, 2, 3, 2, 4, 2, 5}
 	var third = [10]int{3, 3, 1, 1, 2, 2, 4, 4, 5, 5}
