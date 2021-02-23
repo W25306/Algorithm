@@ -457,7 +457,36 @@ def solution_21(n, a, b):
 
     return int(sol(0, n, a, b))
 
+def solution_22(a):
+    """
+    Problem : 프로그래머스 풍선 터트리기
+    Algorithm : DP
+    """
+    answer = 2
+    l = a[0]
+    left = [l]
+    r = a[-1]
+    right = [r]
+    for item in a[1:]:
+        if item < l:
+            l = item
+        left.append(l)
+    for item in a[-2::-1]:
+        if item < r:
+            r = item
+        right.append(r)
+    right.reverse()
+    for idx,item in enumerate(a):
+        if idx == 0 or idx == len(a)-1:
+            continue
+        if max(item,left[idx-1],right[idx+1]) != item:
+            answer += 1
+        else:
+            print(item)
+    print(left)
+    print(right)
+    return answer
 
 if __name__ == '__main__':
-    test = "baabaca"
-    print(solution(16, 16, 13))
+    test = [-16,27,65,-2,58,-92,-71,-68,-61,-33]
+    print(solution(test))
