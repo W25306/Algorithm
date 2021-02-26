@@ -483,10 +483,25 @@ def solution_22(a):
             answer += 1
         else:
             print(item)
-    print(left)
-    print(right)
+    return answer
+
+def solution_23(routes):
+    """
+    Problem : 프로그래머스 단속카메라
+    Algorithm : Greedy
+    """
+    answer = 1
+    routes.sort()
+    gate = routes[0][1]
+    for i, item in enumerate(routes[:-1]):
+        if gate > item[1]:
+            gate = item[1]
+        if gate < routes[i+1][0]:
+            answer += 1
+            gate = routes[i+1][1]
+
     return answer
 
 if __name__ == '__main__':
-    test = [-16,27,65,-2,58,-92,-71,-68,-61,-33]
+    test = [[-20,15], [-14,-5], [-18,-13], [-5,-3]]
     print(solution(test))
