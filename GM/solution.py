@@ -502,6 +502,23 @@ def solution_23(routes):
 
     return answer
 
+def solution_24(n, words):
+    """
+    Problem : 프로그래머스 영어끝말잇기
+    """
+    collection = set()
+    steps = 0
+    for step in range(0,len(words),n):
+        steps += 1
+        for i in range(step,step+n):
+            if i > 0 and words[i-1][-1] != words[i][0]:
+                return [i%n+1,steps]
+            if words[i] in collection:
+                return [i%n+1,steps]
+            else:
+                collection.add(words[i])
+    return [0,0]
+
 if __name__ == '__main__':
-    test = [[-20,15], [-14,-5], [-18,-13], [-5,-3]]
-    print(solution(test))
+    test = ["hello", "one", "even", "never", "now", "world", "draw"]
+    print(solution(2,test))
