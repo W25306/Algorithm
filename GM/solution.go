@@ -5,6 +5,15 @@ import "fmt"
 func main() {
 	fmt.Println(1)
 }
+
+func solution(a []int, b []int) int {
+    result := 0
+	for i :=0 ; i < len(a); i++{
+		result += a[i]*b[i]
+	}
+	return result
+}
+
 func _(a int, b int) string {
 	// 프로그래머스 2016년
 	month := [12]int{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
