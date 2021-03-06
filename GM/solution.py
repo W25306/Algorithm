@@ -519,6 +519,18 @@ def solution_24(n, words):
                 collection.add(words[i])
     return [0,0]
 
+def solution(n):
+    NOTATION = '0123'
+    def change(N):
+        q, r = divmod(N, 3)
+        n = NOTATION[r]
+        return change(q) + n if q else n
+    answer = change(n)
+    result = 0
+    for i,s in enumerate(answer):
+        result += 3 ** i * int(s)
+    return result
+
 if __name__ == '__main__':
     test = ["hello", "one", "even", "never", "now", "world", "draw"]
-    print(solution(2,test))
+    print(solution(125))
