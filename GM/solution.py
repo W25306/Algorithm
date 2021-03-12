@@ -519,7 +519,7 @@ def solution_24(n, words):
                 collection.add(words[i])
     return [0,0]
 
-def solution(n):
+def solution_25(n):
     NOTATION = '0123'
     def change(N):
         q, r = divmod(N, 3)
@@ -531,6 +531,29 @@ def solution(n):
         result += 3 ** i * int(s)
     return result
 
+def solution(N, stages):
+    """
+    Problem : 프로그래머스 실패율
+    Algorithm : heap, collections.Counter
+    """
+    from collections import Counter
+    import heapq
+    answer = []
+    heap = []
+    count = Counter(stages)
+    length = len(stages)
+
+    for i in range(1,N+1):
+        if length < 1:
+            heapq.heappush(heap,(0,i))
+        else:
+            heapq.heappush(heap, (-(count[i]/length),i))
+        length -= count[i]
+    while heap:
+        answer.append(heapq.heappop(heap)[1])
+    return answer
+
 if __name__ == '__main__':
-    test = ["hello", "one", "even", "never", "now", "world", "draw"]
-    print(solution(125))
+    test = [4,4,4,4,4]
+    N = 4
+    print(solution(N,test))
